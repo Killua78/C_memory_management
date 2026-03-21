@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 19:25:58 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/21 15:06:40 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:44:25 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ char	**ft_split(char *str, char *charset)
 	int	j;
 	int	k;
 
-//	tab = malloc(sizeof(char *) * count_word(str, charset) + 1);
-	tab = malloc(5000);
+	tab = malloc(sizeof(char *) * count_word(str, charset) + 1);
 	i = 0;
 	k = 0;
 	while (str[k])
@@ -82,22 +81,20 @@ char	**ft_split(char *str, char *charset)
 		j = 0;
 		while (is_sep(str[k], charset))
 			k++;
-	//	tab[i] = malloc(sizeof(char) * word_len(&str[k], charset) + 1);
-		tab[i] = malloc(5000);
-		while (!is_sep(str[k], charset))
+		tab[i] = malloc(sizeof(char) * word_len(&str[k], charset) + 1);
+		while (str[k] && !is_sep(str[k], charset))
 		{
 			tab[i][j] = str[k];
 			k++;
 			j++;
 		}
 		tab[i][j] = '\0';
-	//	if (!is_sep(str[k], charset) && is_sep(str[k - 1], charset))
-			i++;
+		i++;
 	}
 	tab[i] = '\0';
 	return (tab);
 }
-
+/*
 #include <stdio.h>
 int main(void)
 {
@@ -111,4 +108,4 @@ int main(void)
 		printf("%s\n", tab[i]);
 		i++;
 	}
-}
+}*/
