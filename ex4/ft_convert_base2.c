@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:06:49 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/23 19:18:19 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:01:43 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,53 @@ int	is_valid_base(char *base);
 int	index_in_base(char c, char *base);
 int	atoi_base(char *str, char *base);
 
-char	itoa(int nbr, char *base)
+char   *reverse(char *str, int length)
+{       
+        char *reversed;
+        int     i;
+        int     j;
+        int     temp;
+
+        i = 0;
+        while (i < (length / 2))
+        {
+                j = length - i - 1;
+                temp = reversed[i];
+                reversed[i] = reversed[j];
+                reversed[j] = temp;
+                i++;
+        }
+}
+
+char	*itoa(int nbr, char *base)
 {
 	char	*str;
 	int	i;
 	int	count;
+	int	temp;
+	int	rest;
 
+	temp = nbr;
 	count = 0;
-	if (nbr == 0)
-		return ('0');
-	while (nbr > 0)
+	if (temp == 0)
+		return (0);
+	while (temp > 0)
 	{
-		nbr = nbr % base_len(base);
+		temp = temp / base_len(base);
 		count++;
 	}
-	str = malloc(sizeof(char) * count);
+	str = malloc(sizeof(char) * 400);
 	i = 0;
 	while (i < count)
 	{
-		nbr = nbr % base_len(base);
-		str[i] = base[nbr];
+		rest = nbr % base_len(base);
+		str[i] = base[rest];
+		nbr /= base_len(base);
 		i++;
 	}
-	return (*str);
+	reverse(str, count);
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
@@ -63,6 +87,12 @@ int main(void)
 	char *nbr = "54";
 	char *base_from = "0123456789";
 	char *base_to = "0123456789ABCDEF";
+	char *tab = ft_convert_base(nbr, base_from, base_to);
+	int i = 0;
 
-
+	while(tab[i])
+	{
+		printf("%c\n", tab[i]);
+		i++;
+	}
 }
