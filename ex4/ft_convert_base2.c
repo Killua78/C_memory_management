@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:06:49 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/24 16:01:43 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/24 16:53:09 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int	atoi_base(char *str, char *base);
 
 char   *reverse(char *str, int length)
 {       
-        char *reversed;
         int     i;
         int     j;
-        int     temp;
+        char     temp;
 
         i = 0;
         while (i < (length / 2))
         {
                 j = length - i - 1;
-                temp = reversed[i];
-                reversed[i] = reversed[j];
-                reversed[j] = temp;
+                temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
                 i++;
         }
+	return (str);
 }
 
 char	*itoa(int nbr, char *base)
@@ -52,7 +52,7 @@ char	*itoa(int nbr, char *base)
 		temp = temp / base_len(base);
 		count++;
 	}
-	str = malloc(sizeof(char) * 400);
+	str = malloc(sizeof(char) * (count + 1));
 	i = 0;
 	while (i < count)
 	{
@@ -84,15 +84,15 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 int main(void)
 {
-	char *nbr = "54";
+	char *nbr = "       -2";
 	char *base_from = "0123456789";
-	char *base_to = "0123456789ABCDEF";
+	char *base_to = "01";
 	char *tab = ft_convert_base(nbr, base_from, base_to);
 	int i = 0;
 
 	while(tab[i])
 	{
-		printf("%c\n", tab[i]);
+		printf("%c", tab[i]);
 		i++;
 	}
 }
