@@ -26,33 +26,31 @@ int	ft_ultimate_range(int **range, int min, int max)
 		return (0);
 	}
 	i = 0;
-	range = malloc(sizeof(int *) * (max - min));
+	*range = malloc(sizeof(int) * size);
 	while (min < max)
 	{
-		range[i] = malloc(sizeof(int) * size);
-		*range[i] = min;
+		(*range)[i] = min;
 		min++;
 		i++;
 	}
-	if (!range)
+	if (!*range)
 		return (-1);
 	return (size);
 }
-/*
-void	print(int *range)
+
+int	main(void)
 {
-	int i = -1;
-	while (++i < 5)
-		printf("%d", range[i]);
-}*/
+	int	*tab;
+	int	size;
+	int	i;
 
-int main(void)
-{
-	int min = 4;
-	int max = 8;
-	int **range;
-
-
-	printf("%d", ft_ultimate_range(range, min, max));
+	size = ft_ultimate_range(&tab, -7, 12);
+	printf("Taille : %d\n", size);
+	i = 0;
+	while (i < size)
+	{
+		printf("tab[%d] = %d\n", i, tab[i]);
+		i++;
+	}
 	return (0);
 }
