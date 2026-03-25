@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 12:07:13 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/19 12:47:50 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/25 11:23:19 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ int	*ft_range(int min, int max)
 	}
 	return (range);
 }
+/*
 #include <stdio.h>
 int main(void)
 {
-	int min = 5;
-	int max = 25;
+	int min = 0;
+	int max = 0;
 	int *tab;
 	int i = 0;
 
@@ -43,4 +44,4 @@ int main(void)
 		printf("%d\n", tab[i]);
 		i++;
 	}
-}
+}*/

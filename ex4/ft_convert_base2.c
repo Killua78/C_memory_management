@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:06:49 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/24 16:53:09 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/24 18:49:48 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,13 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	int	atoi;
 	char	*final;
+	int	i;
 
+	i = 0;
+	while (nbr[i])
+	{
+		while (str[i] == )
+	
 	if (!(is_valid_base(base_from) || is_valid_base(base_to)))
 	{
 		return (0);
@@ -84,7 +90,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 int main(void)
 {
-	char *nbr = "       -2";
+	char *nbr = "2";
 	char *base_from = "0123456789";
 	char *base_to = "01";
 	char *tab = ft_convert_base(nbr, base_from, base_to);
