@@ -42,23 +42,32 @@ char	*itoa(int nbr, char *base)
 	int	count;
 	int	temp;
 	int	rest;
-
+	int b_len;
+	
+	b_len = base_len(base);
 	temp = nbr;
 	count = 0;
 	if (temp == 0)
-		return (0);
+	{
+	    str = malloc(2);
+	    if (!str)
+	        return NULL;
+	    str[0] = base[0];
+	    str[1] = '\0';
+		return (str);
+	}
 	while (temp > 0)
 	{
-		temp = temp / base_len(base);
+		temp = temp / b_len;
 		count++;
 	}
 	str = malloc(sizeof(char) * (count + 1));
 	i = 0;
 	while (i < count)
 	{
-		rest = nbr % base_len(base);
+		rest = nbr % b_len;
 		str[i] = base[rest];
-		nbr /= base_len(base);
+		nbr /= b_len;
 		i++;
 	}
 	reverse(str, count);
@@ -73,11 +82,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	int	i;
 
 	i = 0;
-	while (nbr[i])
-	{
-		while (str[i] == )
-	
-	if (!(is_valid_base(base_from) || is_valid_base(base_to)))
+	if (!is_valid_base(base_from) || !is_valid_base(base_to))
 	{
 		return (0);
 	}
@@ -90,9 +95,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 int main(void)
 {
-	char *nbr = "2";
+	char *nbr = "        474565464";
 	char *base_from = "0123456789";
-	char *base_to = "01";
+	char *base_to = "0123456789ABCDEF";
 	char *tab = ft_convert_base(nbr, base_from, base_to);
 	int i = 0;
 
