@@ -6,7 +6,7 @@
 /*   By: nboubeke <nboubeke@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:06:29 by nboubeke          #+#    #+#             */
-/*   Updated: 2026/03/24 12:21:10 by nboubeke         ###   ########.fr       */
+/*   Updated: 2026/03/26 13:59:59 by nboubeke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_valid_base(char *base)
 int	index_in_base(char c, char *base)
 {
 	int	i;
-	
+
 	i = 0;
 	while (base[i])
 	{
@@ -74,9 +74,7 @@ int	atoi_base(char *str, char *base)
 	count = 0;
 	j = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
-	{
 		i++;
-	}
 	while (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -84,10 +82,7 @@ int	atoi_base(char *str, char *base)
 		i++;
 	}
 	while (index_in_base(str[i], base) != -1)
-	{
-		j = j * base_len(base) + index_in_base(str[i], base);
-		i++;
-	}
+		j = j * base_len(base) + index_in_base(str[i++], base);
 	if (count % 2 == 0)
 		return (j);
 	else
