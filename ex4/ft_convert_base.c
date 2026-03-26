@@ -73,16 +73,18 @@ int	atoi_base(char *str, char *base)
 	i = 0;
 	count = 0;
 	j = 0;
-	while (str[i])
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
-			i++;
-		while (str[i] == '-' || str[i] == '+')
-	       	{
-			if (str[i] == '-')
-				count++;
-			i++;
-		}
+		i++;
+	}
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			count++;
+		i++;
+	}
+	while (index_in_base(str[i], base) != -1)
+	{
 		j = j * base_len(base) + index_in_base(str[i], base);
 		i++;
 	}
