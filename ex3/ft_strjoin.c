@@ -11,33 +11,35 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-	{
+	while (str[i])
 		i++;
-	}
 	return (i);
 }
 
 int	full_strlen(int size, char **strs, char *sep)
 {
 	int	i;
-	int	fulltab;
+	int fulltab;
 	int 	seplen;
 
 	i = 0;
 	fulltab = 0;
-	seplen = ft_strlen(sep) * (size - 1);
-	while (*strs[i] < size)
+	seplen = 0;
+	while (i < size)
 	{
 		fulltab += ft_strlen(strs[i]);
 		i++;
 	}
+	
+	if (size > 1)
+	    seplen = ft_strlen(sep) * (size - 1);
 	return (fulltab + seplen);
 }
 
@@ -49,42 +51,42 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	int	k;
 	int	l;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	str = malloc(full_strlen(size, strs, sep) + 100);
-	
 	if (size == 0)
 	{
-		free (str);
-		return NULL;
+	    str = malloc(1);
+	    if(!str)
+	        return NULL;
+		str[0] = '\0';
+		return (str);
 	}
+	str = malloc(full_strlen(size, strs, sep) + 1);
+	if(!str)
+	    return (NULL);
+	i = 0;
+	k = 0;
 	while (i < size)
 	{
 		j = 0;
-		while (strs[i][j] != '\0')
+		while (strs[i][j])
 		{
-			str[k] = strs[i][j];
-			j++;
-			k++;
-			l = 0;
+			str[k++] = strs[i][j++];
 		}
-		while (sep[l] != '\0' && i != (size - 1))
+		if (i < size - 1)
 		{
-			str[k] = sep[l];
-			k++;
-			l++;
+		   l = 0;
+		   while (sep[l])
+		    str[k++] = sep[l++];
 		}
 		i++;
 	}
+	str[k] = '\0';
 	return (str);
 }
 
-#include <stdio.h>
 int main(void)
 {
 	char *strs[] = {"oui", "non", "bonjour", "help", "dormir", "faim"};
-	char *sep = "sfffsdfs";
+	char *sep = "     ";
 	
-	printf("%s", ft_strjoin(6, strs, sep));
+	printf("%s", ft_strjoin(2, strs, sep));
 }
